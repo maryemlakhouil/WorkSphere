@@ -1365,6 +1365,50 @@ video {
   grid-area: Réception;
 }
 
+.\[grid-area\:Sall\] {
+  grid-area: Sall;
+}
+
+.\[grid-area\:Salle-\] {
+  grid-area: Salle-;
+}
+
+.\[grid-area\:Salle\] {
+  grid-area: Salle;
+}
+
+.\[grid-area\:Salle_Reseption\] {
+  grid-area: Salle Reseption;
+}
+
+.\[grid-area\:Salle_\] {
+  grid-area: Salle;
+}
+
+.\[grid-area\:Salle_arrchive\] {
+  grid-area: Salle arrchive;
+}
+
+.\[grid-area\:Salle_con\] {
+  grid-area: Salle con;
+}
+
+.\[grid-area\:Salle_confirence\] {
+  grid-area: Salle confirence;
+}
+
+.\[grid-area\:Salle_personnel\] {
+  grid-area: Salle personnel;
+}
+
+.\[grid-area\:Salle_securite\] {
+  grid-area: Salle securite;
+}
+
+.\[grid-area\:Salle_serveurs\] {
+  grid-area: Salle serveurs;
+}
+
 .\[grid-area\:archive\] {
   grid-area: archive;
 }
