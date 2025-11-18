@@ -78,91 +78,83 @@
             <!-- MODAL -->
            
 
-            <div id="addWorkerModal" 
-     class="modal hidden w-full h-screen fixed top-0 left-0 backdrop-blur-sm bg-black/40 flex justify-center items-center p-4">
+            <div id="addWorkerModal" class="modal hidden w-full h-screen fixed top-0 left-0 backdrop-blur-sm bg-black/40 flex justify-center items-center p-4">
 
-    <form id="workerForm"
-          class="relative w-full max-w-[460px] bg-white max-h-[90vh] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
+                <form id="workerForm" class="relative w-full max-w-[460px] bg-white max-h-[90vh] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
 
-        <!-- Close -->
-        <button id="closeModal" type="button" 
-                class="absolute top-2 right-4 text-3xl cursor-pointer text-gray-600 hover:text-black">
-            ×
-        </button>
+                <!-- Fermer Formulaire -->
+                <button id="closeModal" type="button" class="absolute top-2 right-4 text-3xl cursor-pointer text-gray-600 hover:text-black">x
+                </button>
 
-        <h2 class="text-green-500 font-bold text-3xl mb-2">Add Worker</h2>
+                <h2 class="text-green-600 font-bold text-3xl mb-2">Add Worker</h2>
 
-        <!-- Full Name -->
-        <div class="flex flex-col w-full gap-1">
-            <label for="FullName" class="font-semibold">Full Name:</label>
-            <input id="FullName" type="text" placeholder="Enter full name"
-                   class="p-2 bg-gray-200 rounded border border-gray-300" required>
+                <!-- Nom Complet De Worker -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="FullName" class="font-semibold">Full Name:</label>
+                    <input id="FullName" type="text" placeholder="Enter Votre Nom"
+                        class="p-2 bg-gray-200 rounded border border-gray-300" required>
+                </div>
+
+                <!-- Role -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="Role" class="font-semibold">Role:</label>
+                    <select id="Role" class="w-full p-2 bg-gray-200 rounded border border-gray-300">
+                        <option value="Manager">Manager</option>
+                        <option value="Réceptionnistes">Réceptionnistes</option>
+                        <option value="Techniciens IT">Techniciens IT</option>
+                        <option value="Agents de sécurité">Agents de sécurité</option>
+                        <option value="Nettoyage">Nettoyage</option>
+                        <option value="Autres rôles">Autres rôles</option>
+                    </select>
+                </div>
+
+                <!-- Profile Photo -->
+                <div class="flex flex-col w-full gap-1">
+                    <label class="font-semibold">Profile Photo URL:</label>
+                    <input id="PhotoURL" type="text"
+                        placeholder="https://www.exemple.com/photo.png"
+                        class="p-2 bg-gray-200 rounded border border-gray-300">
+                    <img id="PreviewPhoto" src="img/Profil.jpg" alt="Preview"
+                        class="w-16 h-16 rounded-full mt-1 border object-cover">
+                </div>
+
+                <!-- Email -->
+                <div class="flex flex-col w-full gap-1">
+                    <label class="font-semibold">Email:</label>
+                    <input id="Email" type="email" placeholder="Enter email"
+                        class="p-2 bg-gray-200 rounded border border-gray-300" required>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex flex-col w-full gap-1">
+                    <label class="font-semibold">Phone:</label>
+                    <input id="Phone" type="text" placeholder="Enter phone number"
+                        class="p-2 bg-gray-200 rounded border border-gray-300" required>
+                </div>
+
+                <!-- Experiences -->
+                <div class="flex flex-col w-full gap-2">
+                    <label class="font-semibold">Experiences:</label>
+
+                    <div id="experienceList" class="flex flex-col gap-2"></div>
+
+                    <button type="button" id="addExperienceBtn"
+                        class="w-fit bg-gray-200 border border-gray-400 p-2 cursor-pointer rounded text-sm">
+                        Add Experience
+                    </button>
+                </div>
+
+
+                <!-- Submit -->
+                <button type="submit"
+                        class="bg-green-400 p-2 w-full rounded-xl text-white font-bold cursor-pointer transition hover:scale-95">
+                    Add Worker
+                </button>
+
+            </form>
         </div>
-
-        <!-- Role -->
-        <div class="flex flex-col w-full gap-1">
-            <label for="Role" class="font-semibold">Role:</label>
-            <select id="Role" class="w-full p-2 bg-gray-200 rounded border border-gray-300">
-                <option value="Manager">Manager</option>
-                <option value="Réceptionnistes">Réceptionnistes</option>
-                <option value="Techniciens IT">Techniciens IT</option>
-                <option value="Agents de sécurité">Agents de sécurité</option>
-                <option value="Nettoyage">Nettoyage</option>
-                <option value="Autres rôles">Autres rôles</option>
-            </select>
-        </div>
-
-        <!-- Profile Photo -->
-        <div class="flex flex-col w-full gap-1">
-            <label class="font-semibold">Profile Photo URL:</label>
-            <input id="PhotoURL" type="text"
-                   placeholder="https://www.exemple.com/photo.png"
-                   class="p-2 bg-gray-200 rounded border border-gray-300">
-            <img id="PreviewPhoto" src="img/Profil.jpg" alt="Preview"
-                 class="w-16 h-16 rounded-full mt-1 border object-cover">
-        </div>
-
-        <!-- Email -->
-        <div class="flex flex-col w-full gap-1">
-            <label class="font-semibold">Email:</label>
-            <input id="Email" type="email" placeholder="Enter email"
-                   class="p-2 bg-gray-200 rounded border border-gray-300" required>
-        </div>
-
-        <!-- Phone -->
-        <div class="flex flex-col w-full gap-1">
-            <label class="font-semibold">Phone Number:</label>
-            <input id="Phone" type="text" placeholder="Enter phone number"
-                   class="p-2 bg-gray-200 rounded border border-gray-300" required>
-        </div>
-
-        <!-- Experiences -->
-        <div class="flex flex-col w-full gap-2">
-            <label class="font-semibold">Experiences:</label>
-
-            <div id="experienceList" class="flex flex-col gap-2"></div>
-
-            <button type="button" id="addExperienceBtn"
-                class="w-fit bg-gray-200 border border-gray-400 p-2 cursor-pointer rounded text-sm">
-                Add Experience
-            </button>
-        </div>
-
-
-        <!-- Submit -->
-        <button type="submit"
-                class="bg-green-400 p-2 w-full rounded-xl text-white font-bold cursor-pointer transition hover:scale-95">
-            Add Worker
-        </button>
-
-    </form>
-</div>
 
         </section>
-
-      
-
-
     </main>
 
     <script src="js/main.js"></script>
