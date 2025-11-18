@@ -30,14 +30,14 @@
                 <div class="bg-white rounded-2xl shadow-lg p-4 flex items-center gap-4">
                      
                 </div>
-                <button class="bg-green-600 text-white py-3 rounded-xl font-bold text-lg">
+                <button id="openModal" class="bg-green-600 text-white py-3 rounded-xl font-bold text-lg">
                     Add New Worker
                 </button>
             </div>
         </section>
 
         <!-- reight Partie-->
-        <section class="relative w-full shadow-md rounded-xl">
+        <section class="relative w-full shadow-md rounded-">
             <img src="img/background.jpg" alt="WorkSpace" class="absolute top-0 left-0  w-full h-full">
 
             <div class="WorkSpace w-full h-full" id="WorkSpace">
@@ -73,6 +73,85 @@
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">archive</h3>
                 </div>
             </div>
+             <!-- MODAL (hidden by default) -->
+       <!-- MODAL -->
+<div id="addWorkerModal"
+     class="modal w-full h-screen fixed top-0 left-0 backdrop-blur-[2px] bg-black/40 flex justify-center items-center p-4 hidden">
+
+    <form id="workerForm"
+          class="relative w-full max-w-[460px] bg-white h-[520px] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
+
+        <!-- Close button -->
+        <button id="closeModal"
+                type="button"
+                class="absolute top-2 right-4 text-3xl cursor-pointer text-gray-600 hover:text-black">
+            &times;
+        </button>
+
+        <h2 class="text-green-500 font-bold text-3xl mb-2">Add Worker</h2>
+
+        <!-- Full Name -->
+        <div class="flex flex-col w-full gap-1">
+            <label for="FullName" class="font-semibold">Full Name:</label>
+            <input id="FullName" type="text" placeholder="Enter full name"
+                   class="p-2 bg-gray-200 rounded border border-gray-300" required>
+        </div>
+
+        <!-- Role -->
+        <div class="flex flex-col w-full gap-1">
+            <label for="Role" class="font-semibold">Role:</label>
+            <select id="Role" class="w-full p-2 bg-gray-200 rounded border border-gray-300">
+                <option value="Manager">Manager</option>
+                <option value="Réceptionnistes">Réceptionnistes</option>
+                <option value="Techniciens IT">Techniciens IT</option>
+                <option value="Agents de sécurité">Agents de sécurité</option>
+                <option value="Nettoyage">Nettoyage</option>
+                <option value="Autres rôles">Autres rôles</option>
+            </select>
+        </div>
+
+        <!-- Profile Photo -->
+        <div class="flex flex-col w-full gap-1">
+            <label class="font-semibold">Profile Photo URL:</label>
+            <input id="PhotoURL" type="text"
+                   placeholder="https://www.exemple.com/photo.png"
+                   class="p-2 bg-gray-200 rounded border border-gray-300">
+            <img id="PreviewPhoto" src="img/Profil.jpg" alt="Preview"
+                 class="w-16 h-16 rounded-full mt-1 border">
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col w-full gap-1">
+            <label class="font-semibold">Email:</label>
+            <input id="Email" type="email" placeholder="Enter email"
+                   class="p-2 bg-gray-200 rounded border border-gray-300" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="flex flex-col w-full gap-1">
+            <label class="font-semibold">Phone Number:</label>
+            <input id="Phone" type="text" placeholder="Enter phone number"
+                   class="p-2 bg-gray-200 rounded border border-gray-300" required>
+        </div>
+
+        <!-- Experience -->
+        <div class="flex flex-col w-full gap-2">
+            <label class="font-semibold">Experiences:</label>
+            <button type="button"
+                    class="addExpBtn w-fit bg-gray-200 border border-gray-400 p-2 cursor-pointer rounded text-sm">
+                Add Experience
+            </button>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+                class="bg-green-400 p-2 w-full rounded-xl text-white font-bold cursor-pointer transition hover:scale-95">
+            Add Worker
+        </button>
+
+    </form>
+</div>
+
 
         </section>
 
@@ -81,7 +160,7 @@
 
     </main>
 
-
+    <script src="js/main.js"></script>
 </body> 
 </html>
 
