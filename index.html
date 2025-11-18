@@ -4,10 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/output.css">
-    <title>WorkSphere  </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>WorkSphere - Gestion Personnel</title>
+    <style>
+        .WorkSpace{
+          display: grid;
+          grid-template-columns: 1.68fr 0.72fr 1fr 1fr;
+          grid-template-rows: 34% 31% 34%;
+          grid-template-areas:
+             "conference . servers security"
+             "Réception . . . "
+             "Réception . personnel archive";
+          gap: 2px;
+        }
+    </style>
 </head>
-<body>
-     
+
+<body class="h-screen w-screen">
+    <main class="flex h-full">
+
+        <!-- Left Sidebar -->
+        <section>
+            <div class=" w-[300px] h-screen rounded-xl bg-[#cfe2ff] p-6 flex flex-col gap-6">
+                <h2 class="text-2xl font-bold text-center"><i class="fas fa-users"></i>Unassigned Staff</h2>
+                <div class="bg-white rounded-2xl shadow-lg p-4 flex items-center gap-4">
+                     
+                </div>
+                <button class="bg-green-600 text-white py-3 rounded-xl font-bold text-lg">
+                    Add New Worker
+                </button>
+            </div>
+        </section>
+
+        <!-- reight Partie-->
+        <section class="relative w-full shadow-md rounded">
+            <img src="img/background.jpg" alt="WorkSpace" class="absolute top-0 left-0  w-full h-full">
+
+            <div class="WorkSpace w-full h-full" id="WorkSpace">
+        
+                <div class="relative [grid-area:conference]">
+                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">conference</h3>
+                </div>
+        <div class="relative [grid-area:servers]">
+            <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+            <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+            <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">servers</h3>
+       </div>
+        <div class="relative [grid-area:security]">
+            <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+            <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+            <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">security</h3>
+        </div>
+        <div class="relative [grid-area:Réception]">
+            <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+            <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+            <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
+        </div>
+        <div class="relative [grid-area:personnel]">
+            <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+            <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+            <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">personnel</h3>
+        </div>
+        <div class="relative [grid-area:archive]">
+            <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+            <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+            <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">archive</h3>
+        </div>
+        </div>
+
+        </section>
+
+      
+
+
+    </main>
+
+
 </body> 
 </html>
 
