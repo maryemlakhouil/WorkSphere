@@ -30,61 +30,64 @@
                 <div class="bg-white rounded-2xl shadow-lg p-4 flex items-center gap-4">
                      
                 </div>
-                <button id="openModal" class="bg-green-600 text-white py-3 rounded-xl font-bold text-lg">
+                <button id="openModal" class="bg-[#89AC46] text-white py-2 rounded-xl font-bold text-lg">
                     Add New Worker
                 </button>
             </div>
         </section>
 
-        <!-- reight Partie-->
+        <!-- reight Partie -->
+
         <section class="relative w-full shadow-md rounded-">
-            <img src="img/background.jpg" alt="wgrid" class="absolute top-0 left-0  w-full h-full">
+            <img src="img/background.jpg" alt="background de application" class="absolute top-0 left-0  w-full h-full">
 
             <div class="wgrid w-full h-full" id="wgrid">
         
                 <div class="relative [grid-area:conference]">
-                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">conference</h3>
                 </div>
                 <div class="relative [grid-area:servers]">
-                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">servers</h3>
                 </div>
                 <div class="relative [grid-area:security]">
-                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">security</h3>
                 </div>
                 <div class="relative [grid-area:Réception]">
-                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
                 </div>
                 <div class="relative [grid-area:personnel]">
-                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">personnel</h3>
                 </div>
                 <div class="relative [grid-area:archive]">
-                    <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
+                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">archive</h3>
                 </div>
             </div>
-             <!-- MODAL (hidden by default) -->
-             <!-- MODAL -->
-            <div id="addWorkerModal" class="modal w-full h-screen fixed top-0 left-0 backdrop-blur-[2px] bg-black/40 flex justify-center items-center p-4 ">
+
+            <!-- MODAL -->
+           
+
+            <div id="addWorkerModal" 
+     class="modal hidden w-full h-screen fixed top-0 left-0 backdrop-blur-sm bg-black/40 flex justify-center items-center p-4">
 
     <form id="workerForm"
-          class="relative w-full max-w-[460px] bg-white h-[520px] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
+          class="relative w-full max-w-[460px] bg-white max-h-[90vh] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
 
-        <!-- Close button -->
-        <button id="closeModal"
-                type="button"
+        <!-- Close -->
+        <button id="closeModal" type="button" 
                 class="absolute top-2 right-4 text-3xl cursor-pointer text-gray-600 hover:text-black">
-            &times;
+            ×
         </button>
 
         <h2 class="text-green-500 font-bold text-3xl mb-2">Add Worker</h2>
@@ -116,7 +119,7 @@
                    placeholder="https://www.exemple.com/photo.png"
                    class="p-2 bg-gray-200 rounded border border-gray-300">
             <img id="PreviewPhoto" src="img/Profil.jpg" alt="Preview"
-                 class="w-16 h-16 rounded-full mt-1 border">
+                 class="w-16 h-16 rounded-full mt-1 border object-cover">
         </div>
 
         <!-- Email -->
@@ -133,14 +136,18 @@
                    class="p-2 bg-gray-200 rounded border border-gray-300" required>
         </div>
 
-        <!-- Experience -->
+        <!-- Experiences -->
         <div class="flex flex-col w-full gap-2">
             <label class="font-semibold">Experiences:</label>
-            <button type="button"
-                    class="addExpBtn w-fit bg-gray-200 border border-gray-400 p-2 cursor-pointer rounded text-sm">
+
+            <div id="experienceList" class="flex flex-col gap-2"></div>
+
+            <button type="button" id="addExperienceBtn"
+                class="w-fit bg-gray-200 border border-gray-400 p-2 cursor-pointer rounded text-sm">
                 Add Experience
             </button>
         </div>
+
 
         <!-- Submit -->
         <button type="submit"
@@ -149,8 +156,7 @@
         </button>
 
     </form>
-            </div>
-
+</div>
 
         </section>
 
