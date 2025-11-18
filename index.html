@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <title>WorkSphere - Gestion personnel</title>
+    <title>WorkSphere - Gestion Personnel</title>
     <style>
-        .work-grid{
+        .wgrid{
           display: grid;
           grid-template-columns: 38% 17% 22% 22%;
           grid-template-rows: 33.5% 32% 32.5%;
           grid-template-areas:
-             "Salle_confirence . Salle_serveurs Salle_securite"
-             "Salle_Reseption . . . "
-             "Salle_Reseption . Salle_personnel Salle_arrchive";
+             "conference . servers security"
+             "Réception . . . "
+             "Réception . personnel archive";
           gap: 2px;
         }
     </style>
@@ -23,9 +23,9 @@
 <body class="h-screen w-screen overflow-hidden">
     <main class="flex h-full gap-4">
 
-        <!-- Left Sidebar -->
+        <!-- Left Sidebar Avec boutton add new worker-->
         <section>
-            <div class=" w-[300px] h-screen rounded-xl bg-[#cfe2ff] p-6 flex flex-col gap-6">
+            <div class=" w-[300px] h-screen rounded-xl bg-[#D3E671] p-6 flex flex-col gap-6">
                 <h2 class="text-2xl font-bold text-center"><i class="fas fa-users"></i>Unassigned Staff</h2>
                 <div class="bg-white rounded-2xl shadow-lg p-4 flex items-center gap-4">
                      
@@ -38,39 +38,39 @@
 
         <!-- reight Partie-->
         <section class="relative w-full shadow-md rounded-">
-            <img src="img/background.jpg" alt="work-grid" class="absolute top-0 left-0  w-full h-full">
+            <img src="img/background.jpg" alt="wgrid" class="absolute top-0 left-0  w-full h-full">
 
-            <div class="work-grid w-full h-full" id="work-grid">
+            <div class="wgrid w-full h-full" id="wgrid">
         
-                <div class="relative [grid-area:Salle_confirence]">
+                <div class="relative [grid-area:conference]">
                     <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">Salle_confirence</h3>
+                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">conference</h3>
                 </div>
-                <div class="relative [grid-area:Salle_serveurs]">
+                <div class="relative [grid-area:servers]">
                     <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle_serveurs</h3>
+                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">servers</h3>
                 </div>
-                <div class="relative [grid-area:Salle_securite]">
+                <div class="relative [grid-area:security]">
                     <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle_securite</h3>
+                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">security</h3>
                 </div>
-                <div class="relative [grid-area:Salle_Reseption]">
+                <div class="relative [grid-area:Réception]">
                     <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle_Reseption</h3>
+                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
                 </div>
-                <div class="relative [grid-area:Salle_personnel]">
+                <div class="relative [grid-area:personnel]">
                     <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">Salle_personnel</h3>
+                    <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">personnel</h3>
                 </div>
-                <div class="relative [grid-area:Salle_arrchive]">
+                <div class="relative [grid-area:archive]">
                     <div class="w-full h-full empty:bg-red-400 opacity-50"></div>
                     <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle_arrchive</h3>
+                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">archive</h3>
                 </div>
             </div>
              <!-- MODAL (hidden by default) -->
@@ -101,7 +101,7 @@
             <label for="Role" class="font-semibold">Role:</label>
             <select id="Role" class="w-full p-2 bg-gray-200 rounded border border-gray-300">
                 <option value="Manager">Manager</option>
-                <option value="Salle_Reseptionnistes">Réceptionnistes</option>
+                <option value="Réceptionnistes">Réceptionnistes</option>
                 <option value="Techniciens IT">Techniciens IT</option>
                 <option value="Agents de sécurité">Agents de sécurité</option>
                 <option value="Nettoyage">Nettoyage</option>

@@ -1142,6 +1142,15 @@ video {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[D3E671\] {
+  background-color: D3E671;
+}
+
+.bg-\[\#D3E671\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(211 230 113 / var(--tw-bg-opacity, 1));
+}
+
 .bg-cover {
   background-size: cover;
 }
