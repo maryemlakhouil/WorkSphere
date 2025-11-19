@@ -115,8 +115,9 @@ function ajouterWorker(worker) {
   `;
   staffList.appendChild(card);
 }
- // Sélection du bouton "Add Experience"
-const addExperience = document.querySelector(".addExperience");
+ // Sélection du bouton "Add Experience" 
+
+const addExperience = document.querySelector("#addExperience");
 const experienceList = document.getElementById("experienceList");
 
 //  Ajouter une nouvelle expérience
