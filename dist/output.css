@@ -818,6 +818,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#86f43d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 244 61 / var(--tw-bg-opacity, 1));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -875,6 +880,11 @@ video {
 
 .text-\[\.7rem\] {
   font-size: .7rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {

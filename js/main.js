@@ -154,20 +154,26 @@ addExperience.addEventListener("click", () => {
 
 // Acces Roles 
 
-const accesRoles = {
-  "Receptions" : ["Réceptions"],
-  "Techniques IT " :  ["Salles de serveurs"],
-}
-
-[
-  {
-    "roomName" : "Receptions",
-    "allowd" : [""]
-  },
-  {
-
-  }
-]
 
 
-const allowed = ["",""]
+const accessRules = {
+  Réceptionnistes: ["Réception"],
+  "Techniciens IT": ["Salle des serveurs"],
+  "Agents de sécurité": ["Salle de sécurité"],
+  Manager: [
+    "Réception",
+    "Salle des serveurs",
+    "Salle de sécurité",
+    "Salle du personnel",
+    "Salle d’archives",
+    "Salle de conférence",
+  ],
+  Nettoyage: [
+    "Réception",
+    "Salle des serveurs",
+    "Salle de sécurité",
+    "Salle du personnel",
+    "Salle de conférence",
+  ],
+  "Autres rôles": ["Réception", "Salle du personnel", "Salle de conférence"],
+};
