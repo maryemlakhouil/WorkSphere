@@ -2,7 +2,6 @@
 const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
-
 // Ouvrir modal
 ouvrirModal.addEventListener("click", () => {
   modal.classList.remove("hidden");
@@ -64,12 +63,12 @@ formulaire.addEventListener("submit", (e) => {
       return;
     }
 
-    if (new Date(debut) >= new Date(end)) {
+    if (new Date(debut) >= new Date(fin)) {
       alert("La date de début doit être avant la date de fin.");
       return;
     }
 
-    experiences.push({ title, debut, end });
+    experiences.push({ title, debut,fin });
   }
 
   //  Création de l'objet Worker
@@ -106,10 +105,10 @@ addExperience.addEventListener("click", () => {
 
         <div class="flex gap-2">
             <input type="date" class="expdebut p-2 border rounded bg-white" required>
-            <input type="date" class="expEnd p-2 border rounded bg-white" required>
+            <input type="date" class="expfin p-2 border rounded bg-white" required>
         </div>
 
-        <button type="button" class="removeExp bg-red-200 text-white px-2 py-1 rounded w-fit">
+        <button type="button" class="removeExp bg-red-400 text-white px-2 py-1 rounded w-fit">
             Supprimer
         </button>
     `;
