@@ -130,7 +130,7 @@ const experienceList = document.getElementById("experienceList");
 addExperience.addEventListener("click", () => {
 
     const expDiv = document.createElement("div");
-    expDiv.className = "expBlock w-full border p-3 rounded flex flex-col gap-2";
+    expDiv.className = "expBlock w-full border  p-3 rounded flex flex-col gap-2";
 
     expDiv.innerHTML = `
         <input type="text" 
@@ -142,7 +142,7 @@ addExperience.addEventListener("click", () => {
             <input type="date" class="expfin p-2 border rounded bg-white" required>
         </div>
 
-        <button type="button" class=" w-fit bg-red-600 border border-gray-400 p-2 cursor-pointer rounded text-sm ">
+        <button type="button" class="w-fit bg-red-600 border border-gray-400 p-2 cursor-pointer rounded text-sm ">
             Supprimer
         </button>
     `;
@@ -158,8 +158,6 @@ addExperience.addEventListener("click", () => {
 
 // Acces Roles 
 
-
-
 const accessRules = {
   Réceptionnistes: ["Réception"],
   "Techniciens IT": ["Salle des serveurs"],
@@ -169,7 +167,7 @@ const accessRules = {
     "Salle des serveurs",
     "Salle de sécurité",
     "Salle du personnel",
-    "Salle d’archives",
+    "Salle d'archives",
     "Salle de conférence",
   ],
   Nettoyage: [
@@ -181,3 +179,6 @@ const accessRules = {
   ],
   "Autres rôles": ["Réception", "Salle du personnel", "Salle de confirence"],
 };
+
+
+
