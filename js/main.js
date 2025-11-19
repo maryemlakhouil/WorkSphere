@@ -67,4 +67,36 @@ formulaire.addEventListener("submit", (e) => {
   modal.classList.add("hidden");
   formulaire.reset();
 });
-//
+ // Sélection du bouton "Add Experience"
+const addExperience = document.querySelector(".addExperience");
+const experienceList = document.getElementById("experienceList");
+
+//  Ajouter une nouvelle expérience
+
+addExperience.addEventListener("click", () => {
+
+    const expDiv = document.createElement("div");
+    expDiv.className = "expBlock w-full border p-3 rounded bg-gray-100 flex flex-col gap-2";
+
+    expDiv.innerHTML = `
+        <input type="text" 
+               placeholder="Titre de l'expérience"
+               class="expTitle p-2 border rounded bg-white" required>
+
+        <div class="flex gap-2">
+            <input type="date" class="expStart p-2 border rounded bg-white" required>
+            <input type="date" class="expEnd p-2 border rounded bg-white" required>
+        </div>
+
+        <button type="button" class="removeExp bg-red-200 text-white px-2 py-1 rounded w-fit">
+            Supprimer
+        </button>
+    `;
+
+    experienceList.appendChild(expDiv);
+
+    // Suppression d'une expérience
+    expDiv.querySelector(".removeExp").addEventListener("click", () => {
+        expDiv.remove();
+    });
+});
