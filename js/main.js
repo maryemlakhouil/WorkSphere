@@ -21,6 +21,15 @@ const inputEmail = document.getElementById("Email");
 const inputPhone = document.getElementById("Phone");
 const photoInput = document.getElementById("PhotoURL");
 
+const previewPhoto = document.getElementById("PreviewPhoto");
+photoInput.addEventListener("input", () => {
+  if (photoInput.value.trim() !== "") {
+    previewPhoto.src = photoInput.value;
+  } else {
+    previewPhoto.src = "img/Profil.jpg";
+  }
+});
+
 // Regex
 const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{2,50}$/;
 const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
@@ -51,12 +60,12 @@ formulaire.addEventListener("submit", (e) => {
   }
 
   const blockExp = document.querySelectorAll(".expBlock");
-
   let experiences = [];
+
   for(let block of blockExp) {
     const title = block.querySelector(".expTitle").value.trim();
     const debut = block.querySelector(".expdebut").value;
-    const fin = block.querySelector(".expEnd").value;
+    const fin = block.querySelector(".expfin").value;
 
     if (!title || !debut || !fin) {
       alert("remplir Tous les champs d'expérience .");
@@ -80,13 +89,32 @@ formulaire.addEventListener("submit", (e) => {
     phone: inputPhone.value,
     experiences: experiences,
   };
-
+   ajouterWorker(worker);
   alert(" Worker ajouté avec succès !");
 
   //  Fermeture modal + reset
   modal.classList.add("hidden");
   formulaire.reset();
+  previewPhoto.src = "img/Profil.jpg";
+  experienceList.innerHTML = "";
 });
+
+function ajouterWorker(worker) {
+  const card = document.createElement("div");
+  const staffList= document.getElementById("stafflist")
+  card.className = "bg-white p-3 rounded-xl shadow flex gap-3 items-center";
+
+  card.innerHTML = `
+                <div class="flex">
+                  <img src="${worker.photo}" alt="staff image" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
+                  <h3 class="font-bold text-[.7rem] md:text-[1rem] mt-2 md:mt-3 md:ml-4">${worker.fullName} <br> <span class="md:text-[.8rem] text-gray-400">${worker.role}</</span></h3>
+                </div>
+                <div class="flex">
+                  <button class="mr-1 text-yellowButton text-[.6rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
+                </div>
+  `;
+  staffList.appendChild(card);
+}
  // Sélection du bouton "Add Experience"
 const addExperience = document.querySelector(".addExperience");
 const experienceList = document.getElementById("experienceList");
@@ -120,3 +148,5 @@ addExperience.addEventListener("click", () => {
         expDiv.remove();
     });
 });
+
+
