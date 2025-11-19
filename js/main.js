@@ -51,6 +51,27 @@ formulaire.addEventListener("submit", (e) => {
     return;
   }
 
+  const blockExp = document.querySelectorAll(".expBlock");
+
+  let experiences = [];
+  for(let block of blockExp) {
+    const title = block.querySelector(".expTitle").value.trim();
+    const debut = block.querySelector(".expdebut").value;
+    const fin = block.querySelector(".expEnd").value;
+
+    if (!title || !debut || !fin) {
+      alert("remplir Tous les champs d'expérience .");
+      return;
+    }
+
+    if (new Date(debut) >= new Date(end)) {
+      alert("La date de début doit être avant la date de fin.");
+      return;
+    }
+
+    experiences.push({ title, debut, end });
+  }
+
   //  Création de l'objet Worker
   const worker = {
     fullName: inputName.value,
@@ -58,7 +79,7 @@ formulaire.addEventListener("submit", (e) => {
     photo: photoInput.value || "img/Profil.jpg",
     email: inputEmail.value,
     phone: inputPhone.value,
-    // experiences: 
+    experiences: experiences,
   };
 
   alert(" Worker ajouté avec succès !");
@@ -84,7 +105,7 @@ addExperience.addEventListener("click", () => {
                class="expTitle p-2 border rounded bg-white" required>
 
         <div class="flex gap-2">
-            <input type="date" class="expStart p-2 border rounded bg-white" required>
+            <input type="date" class="expdebut p-2 border rounded bg-white" required>
             <input type="date" class="expEnd p-2 border rounded bg-white" required>
         </div>
 
