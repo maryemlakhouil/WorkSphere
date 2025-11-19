@@ -152,6 +152,22 @@ addExperience.addEventListener("click", () => {
     
 });
 
-//
+// Acces Roles 
+
+const accesRoles = {
+  "Receptions" : ["Réceptions"],
+  "Techniques IT " :  ["Salles de serveurs"],
+}
+
+[
+  {
+    "roomName" : "Receptions",
+    "allowd" : [""]
+  },
+  {
+
+  }
+]
 
 
+const allowed = ["",""]

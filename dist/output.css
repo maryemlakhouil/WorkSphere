@@ -943,6 +943,10 @@ video {
   transition-duration: 150ms;
 }
 
+.duration-500 {
+  transition-duration: 500ms;
+}
+
 .\[grid-area\:R\E9 ception\] {
   grid-area: Réception;
 }

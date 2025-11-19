@@ -27,7 +27,7 @@
         <section>
             <div class=" w-[300px] h-screen rounded-xl bg-[#D3E671] p-6 flex flex-col gap-6">
                 <h2 class="text-2xl font-bold text-center"><i class="fas fa-users"></i>Unassigned Staff</h2>
-                <div id="stafflist" class=" flex rounded-2xl p-4 items-center gap-4">
+                <div id="stafflist" class=" flex flex-col rounded-2xl p-4 items-center gap-4">
                      
                 </div> 
                 <button id="openModal" class="bg-[#89AC46] text-white py-2 rounded-xl font-bold text-lg">
@@ -36,41 +36,41 @@
             </div>
         </section>
 
-        <!-- reight Partie -->
+        <!-- La Partie Droite -->
 
-        <section class="relative w-full shadow-md rounded-">
+        <section class="relative w-full shadow-md">
             <img src="img/background.jpg" alt="background de application" class="absolute top-0 left-0  w-full h-full">
 
             <div class="wgrid w-full h-full" id="wgrid">
         
                 <div class="relative [grid-area:conference]">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="absolute left-1/2 top-[85%]  bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">Salle de conférence</h3>
                 </div>
                 <div class="relative [grid-area:servers]">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle serveurs</h3>
                 </div>
                 <div class="relative [grid-area:security]">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle de sécurité</h3>
                 </div>
                 <div class="relative [grid-area:Réception]">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
-                    <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
+                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
                 </div>
                 <div class="relative [grid-area:personnel]">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">Salle de personnel</h3>
                 </div>
                 <div class="relative [grid-area:archive]">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all Duration-500 rounded-3xl text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle d'archive</h3>
                 </div>
             </div>
