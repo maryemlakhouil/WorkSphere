@@ -1,8 +1,11 @@
 // ouvrir / Fermer Modal d'ajout
+
 const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
+
 // Ouvrir modal
+
 ouvrirModal.addEventListener("click", () => {
   modal.classList.remove("hidden");
 });
@@ -89,7 +92,7 @@ formulaire.addEventListener("submit", (e) => {
     phone: inputPhone.value,
     experiences: experiences,
   };
-   ajouterWorker(worker);
+  ajouterWorker(worker);
   alert(" Worker ajouté avec succès !");
 
   //  Fermeture modal + reset
@@ -98,6 +101,7 @@ formulaire.addEventListener("submit", (e) => {
   previewPhoto.src = "img/Profil.jpg";
   experienceList.innerHTML = "";
 });
+// Fonction D'ajouter un worker 
 
 function ajouterWorker(worker) {
   const card = document.createElement("div");
@@ -110,9 +114,9 @@ function ajouterWorker(worker) {
                   <h3 class="font-bold text-[.7rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">${worker.fullName} <br> <span class="md:text-[.8rem] text-gray-400">${worker.role}</</span></h3>
                 </div>
                 <div class="flex">
-                  <button class="mr-1 text-yellowButton text-[.6rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
+                  <button class="mr-1 text-red-600 text-[.5rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
                 </div>
-                
+       
   `;
   staffList.appendChild(card);
 }
@@ -175,5 +179,5 @@ const accessRules = {
     "Salle du personnel",
     "Salle de conférence",
   ],
-  "Autres rôles": ["Réception", "Salle du personnel", "Salle de conférence"],
+  "Autres rôles": ["Réception", "Salle du personnel", "Salle de confirence"],
 };
