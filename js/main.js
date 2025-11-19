@@ -1,86 +1,70 @@
 // ouvrir / Fermer Modal d'ajout
-
-const ovrirModal = document.getElementById("openModal");
+const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
 
-ovrirModal.addEventListener("click",() =>{
-    modal.classList.remove("hidden");
+// Ouvrir modal
+ouvrirModal.addEventListener("click", () => {
+  modal.classList.remove("hidden");
 });
 
-fermerModal.addEventListener("click",() =>{
-    modal.classList.add("hidden");
+// Fermer modal
+fermerModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
 });
 
+// Formulaire
 const formulaire = document.getElementById("workerForm");
 
-formulaire.addEventListener("submit",(e)=>{
+// Inputs
+const inputName = document.getElementById("FullName");
+const inputEmail = document.getElementById("Email");
+const inputPhone = document.getElementById("Phone");
+const photoInput = document.getElementById("PhotoURL");
+
+// Regex
+const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{2,50}$/;
+const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
+const phoneRegex = /^0[6-7]\d{8}$/;
+
+// Validation date expérience
+function validerDates(debut, fin) {
+  return new Date(debut) < new Date(fin);
+}
+
+formulaire.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // objet worker
+
+  if (!nameRegex.test(inputName.value)) {
+    alert(" Le nom est invalide");
+    return;
+  }
+
+  if (!emailRegex.test(inputEmail.value)) {
+    alert(" Adresse email invalide");
+    return;
+  }
+
+  if (!phoneRegex.test(inputPhone.value)) {
+    alert(" Numéro de téléphone invalide ");
+    return;
+  }
+
+  //  Création de l'objet Worker
   const worker = {
-    fullName: document.getElementById("FullName").value,
+    fullName: inputName.value,
     role: document.getElementById("Role").value,
     photo: photoInput.value || "img/Profil.jpg",
-    email: document.getElementById("Email").value,
-    phone: document.getElementById("Phone").value,
+    email: inputEmail.value,
+    phone: inputPhone.value,
+    // experiences: 
   };
-  alert("ajouter worker avec succes !");
 
+  alert(" Worker ajouté avec succès !");
+
+  //  Fermeture modal + reset
   modal.classList.add("hidden");
   formulaire.reset();
-
-  // Validation Regex
-
-  const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{2,50}$/;
-  const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
-  const phoneRegex = /^0[6-7]\d{8}$/;
-
-  function validerDates(debut, fin) {
-    return new Date(debut) < new Date(fin);
-  }
-  // message d'erreurs
-  if (!nameRegex.test(fullName.value)) {
-    alert("le nom est invalide");
-    return;
-  }
-
-  if (!emailRegex.test(email.value)) {
-    alert("email est invalide ");
-    return;
-  }
-
-  if (!phoneRegex.test(phone.value)) {
-    alert("le numero de telephone est invalide");
-    return;
-  }
-
-  // VALIDATION DES EXPERIENCES
-  const expBlocks = document.querySelectorAll("#experienceList > div");
-
-  let experiences = [];
-
-  for (let block of expBlocks) {
-    const title = block.querySelector(".expTitle").value.trim();
-    const start = block.querySelector(".expStart").value;
-    const end = block.querySelector(".expEnd").value;
-
-    if (!title || !start || !end) {
-      alert("Experience fields cannot be empty");
-      return;
-    }
-
-    if (!validateExperienceDates(start, end)) {
-      alert("Start date must be earlier than end date");
-      return;
-    }
-
-    experiences.push({
-      title,
-      start,
-      end,
-    });
-  }
 });
-
-
+//
