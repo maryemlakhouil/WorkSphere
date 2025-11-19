@@ -107,11 +107,12 @@ function ajouterWorker(worker) {
   card.innerHTML = `
                 <div class="flex">
                   <img src="${worker.photo}" alt="staff image" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
-                  <h3 class="font-bold text-[.7rem] md:text-[1rem] mt-2 md:mt-3 md:ml-4">${worker.fullName} <br> <span class="md:text-[.8rem] text-gray-400">${worker.role}</</span></h3>
+                  <h3 class="font-bold text-[.7rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">${worker.fullName} <br> <span class="md:text-[.8rem] text-gray-400">${worker.role}</</span></h3>
                 </div>
                 <div class="flex">
                   <button class="mr-1 text-yellowButton text-[.6rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
                 </div>
+                
   `;
   staffList.appendChild(card);
 }
@@ -125,7 +126,7 @@ const experienceList = document.getElementById("experienceList");
 addExperience.addEventListener("click", () => {
 
     const expDiv = document.createElement("div");
-    expDiv.className = "expBlock w-full border p-3 rounded bg-gray-100 flex flex-col gap-2";
+    expDiv.className = "expBlock w-full border p-3 rounded flex flex-col gap-2";
 
     expDiv.innerHTML = `
         <input type="text" 
@@ -137,7 +138,7 @@ addExperience.addEventListener("click", () => {
             <input type="date" class="expfin p-2 border rounded bg-white" required>
         </div>
 
-        <button type="button" class="removeExp bg-red-400 text-white px-2 py-1 rounded w-fit">
+        <button type="button" class=" w-fit bg-red-600 border border-gray-400 p-2 cursor-pointer rounded text-sm ">
             Supprimer
         </button>
     `;
@@ -148,6 +149,9 @@ addExperience.addEventListener("click", () => {
     expDiv.querySelector(".removeExp").addEventListener("click", () => {
         expDiv.remove();
     });
+    
 });
+
+//
 
 
