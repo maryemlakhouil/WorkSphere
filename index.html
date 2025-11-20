@@ -43,35 +43,41 @@
 
             <div class="wgrid w-full h-full" id="wgrid">
         
-                <div class="relative [grid-area:conference]">
+                <div id="room1" class="room relative [grid-area:conference]" room-name="conference">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%]  bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="zone-add absolute left-1/2 top-[85%]  bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">Salle de conférence</h3>
+                    <div id="container_conference" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
-                <div class="relative [grid-area:servers]">
+                <div id="room2" class="room relative [grid-area:servers]" room-name="servers">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle serveurs</h3>
+                     <div id="container_servers" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
-                <div class="relative [grid-area:security]">
+                <div id="room3" class="room relative [grid-area:security]" room-name="security">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle de sécurité</h3>
+                    <div id="container_security" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
-                <div class="relative [grid-area:Réception]">
+                <div id="room4" class="room relative [grid-area:Réception]" room-name="Réception">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
+                     <div id="container_Reception" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
-                <div class="relative [grid-area:personnel]">
+                <div id="room5" class="room relative [grid-area:personnel]" room-name="personnel">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">Salle de personnel</h3>
+                     <div id="container_personnel" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
-                <div class="relative [grid-area:archive]">
+                <div id="room6" class="room relative [grid-area:archive]" room-name="archive">
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
-                    <button class="absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
+                    <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Salle d'archive</h3>
+                     <div id="container_archive" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
             </div>
 
@@ -144,16 +150,36 @@
                     </div>
 
                     <!-- Submit -->
-                     
+
                     <button type="submit"
                             class="bg-green-600 p-2 w-full rounded-xl text-white font-bold cursor-pointer transition hover:scale-95">
                         Add Worker
                     </button>
                 </form>
             </div>
+            <div id="detailsModal" class="hidden fixed top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
+                <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
+
+                <button id="closeDetails" class="absolute top-2 right-3 text-xl font-bold cursor-pointer">×</button>
+
+                <img class="detailPhoto w-24 h-24 rounded-full mx-auto mb-4 object-cover" src="">
+                
+                <h2 class="name text-xl font-bold text-center"></h2>
+                <p class="role text-center text-gray-600"></p>
+                <p class="email text-center text-sm"></p>
+                <p class="phone text-center text-sm mb-4"></p>
+
+                <h3 class="font-bold mt-2">Localisation actuelle :</h3>
+                <p class="location text-gray-700 mb-3"></p>
+
+                <h3 class="font-bold">Expériences :</h3>
+                <div class="Experience flex flex-col gap-2"></div>
+            </div>
+        </div>
+
         </section>
     </main>
-
+      
     <script src="js/main.js"></script>
 </body> 
 </html>

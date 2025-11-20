@@ -4,6 +4,98 @@ const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
 
+let room1 = document.getElementById("room1");
+let room2 = document.getElementById("room2");
+let room3 = document.getElementById("room3");
+let room4 = document.getElementById("room4");
+let room5 = document.getElementById("room5");
+let room6 = document.getElementById("room6");
+
+
+// Règles d’accès par salle 
+function AfficherWorker(roomName,containerr){
+
+  const zoneAcces = {
+      "conference": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
+      "personnel": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
+      "servers": ["Techniciens IT", "Manager", "Nettoyage"],
+      "security": ["Agents de sécurité", "Manager", "Nettoyage"],
+      "Réception": ["Réceptionnistes", "Manager", "Nettoyage"],
+      "archive": ["Manager"]
+  };
+  containerr.innerHTML = "";
+    let workers = JSON.parse(localStorage.getItem("worker")) || [];
+    let rolesAcceptes = zoneAcces[roomName] || [];
+    
+    for (let i = 0; i < workers.length; i++) {
+        let emp = workers[i];
+      if (emp.is_worked==false && rolesAcceptes.includes(emp.Role)) {
+            
+            containerr.innerHTML += `
+                <div class="card cursor-pointer hover:bg-blue-100 shadow-lg rounded-xl p-4 m-2 flex items-center gap-4" data-id="${emp.id}">
+                    <img src="${emp.photo}" class="rounded-full w-20 h-20">
+                    <div class="flex flex-col">
+                        <h5 class="font-bold">${emp.id}</h5>
+                        <h2 class="font-bold text-lg">${emp.fullName}</h2>
+                        <p class="text-gray-600">${emp.Role}</p>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+   
+    containerr.addEventListener("click",function (e){
+        let card = e.target.closest(".card");
+        if (!card) return;
+        let id = parseInt(card.getAttribute("data-id"));
+        let data = JSON.parse(localStorage.getItem("worker")) || [];
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].id === id) {
+                data[i].is_worked = true;
+                data[i].zone_work = containerr.id;
+                window.location.reload();
+                break;
+                
+            }
+        }
+
+        localStorage.setItem("worker", JSON.stringify(data));
+        AfficherCarte(data);
+        afficherEmployesZone(roomName, containerr);
+        alert("Ce worker est afficher dans  " + room_name);
+    });
+}
+
+function  aficher_data(){
+    let workers = JSON.parse(localStorage.getItem("worker")) || [];
+    for(data of workers){
+
+    if(data.is_worked){
+
+   document.getElementById(_data_.zone_work).innerHTML+=
+              `<div class="card cursor-pointer hover:bg-blue-100 shadow-lg rounded-xl p-4 m-2 flex items-center gap-4" data-id="${_data_.id}">
+                    <img src="${data.photo}" class="rounded-full w-20 h-20">
+                    <div class="flex flex-col">
+                        <h5 class="font-bold">${data.id}</h5>
+                        <h2 class="font-bold text-lg">${data.fullName}</h2>
+                        <p class="text-gray-600">${data.Role}</p>
+                    </div>
+                </div>
+             `;
+    }
+}
+}
+
+room1.addEventListener("click",()=>{
+  AfficherWorker("Salle de conférence", document.getElementById("container_conference"))
+
+})
+//localStorage.removeItem("employer")
+aficher_data()
+
+
 // Ouvrir modal
 
 ouvrirModal.addEventListener("click", () => {
@@ -34,21 +126,22 @@ photoInput.addEventListener("input", () => {
 });
 
 // Regex
-const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{2,50}$/;
+const nameRegex = /^[A-Za-zÀ\s'-]{2,50}$/;
 const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
 const phoneRegex = /^0[6-7]\d{8}$/;
 
 // Validation date expérience
-function validerDates(debut, fin) {
-  return new Date(debut) < new Date(fin);
-}
+
+// function validerDates(debut, fin) {
+//   return new Date(debut) < new Date(fin);
+// }
 
 formulaire.addEventListener("submit", (e) => {
   e.preventDefault();
 
 
   if (!nameRegex.test(inputName.value)) {
-    alert(" Le nom est invalide");
+    alert(" Le fullName est invalide");
     return;
   }
 
@@ -85,6 +178,7 @@ formulaire.addEventListener("submit", (e) => {
 
   //  Création de l'objet Worker
   const worker = {
+    id: Date.now(),
     fullName: inputName.value,
     role: document.getElementById("Role").value,
     photo: photoInput.value || "img/Profil.jpg",
@@ -101,6 +195,7 @@ formulaire.addEventListener("submit", (e) => {
   previewPhoto.src = "img/Profil.jpg";
   experienceList.innerHTML = "";
 });
+
 // Fonction D'ajouter un worker 
 
 function ajouterWorker(worker) {
@@ -116,10 +211,23 @@ function ajouterWorker(worker) {
                 <div class="flex">
                   <button class="mr-1 text-red-600 text-[.5rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
                 </div>
+                <button class="removeFromRoom text-red-600 font-bold text-lg px-2">x</button>
        
   `;
   staffList.appendChild(card);
+  activerBoutonRemove(card);
 }
+
+// function activerBoutonRemove(card) {
+//   const btn = card.querySelector(".removeFromRoom");
+//   const unassignedList = document.getElementById("stafflist");
+
+//   btn.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     unassignedList.appendChild(card);
+//   });
+// }
+
  // Sélection du bouton "Add Experience" 
 
 const addExperience = document.querySelector("#addExperience");
@@ -142,7 +250,7 @@ addExperience.addEventListener("click", () => {
             <input type="date" class="expfin p-2 border rounded bg-white" required>
         </div>
 
-        <button type="button" class="w-fit bg-red-600 border border-gray-400 p-2 cursor-pointer rounded text-sm ">
+        <button type="button" class="removeExp w-fit bg-red-600 border border-gray-400 p-2 cursor-pointer rounded text-sm ">
             Supprimer
         </button>
     `;
@@ -156,29 +264,12 @@ addExperience.addEventListener("click", () => {
     
 });
 
-// Acces Roles 
+const rooms = document.querySelectorAll(".room");
+// tester si un role autorizé dans une zone
+function EstAutorisee(role, zone) {
+  return zoneAcces[zone].includes(role);
+}
 
-const accessRules = {
-  Réceptionnistes: ["Réception"],
-  "Techniciens IT": ["Salle des serveurs"],
-  "Agents de sécurité": ["Salle de sécurité"],
-  Manager: [
-    "Réception",
-    "Salle des serveurs",
-    "Salle de sécurité",
-    "Salle du personnel",
-    "Salle d'archives",
-    "Salle de conférence",
-  ],
-  Nettoyage: [
-    "Réception",
-    "Salle des serveurs",
-    "Salle de sécurité",
-    "Salle du personnel",
-    "Salle de conférence",
-  ],
-  "Autres rôles": ["Réception", "Salle du personnel", "Salle de confirence"],
-};
 
 
 
