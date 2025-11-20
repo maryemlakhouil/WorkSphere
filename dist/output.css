@@ -894,6 +894,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -936,6 +941,10 @@ video {
   line-height: 1.75rem;
 }
 
+.text-\[\.3rem\] {
+  font-size: .3rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -972,6 +981,11 @@ video {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }
 
 .opacity-50 {
@@ -1101,5 +1115,9 @@ video {
 
   .md\:text-\[1rem\] {
     font-size: 1rem;
+  }
+
+  .md\:text-\[0\.8rem\] {
+    font-size: 0.8rem;
   }
 }
