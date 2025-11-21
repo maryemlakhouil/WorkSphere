@@ -1,5 +1,4 @@
 // ouvrir / Fermer Modal d'ajout
-
 const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
@@ -7,7 +6,7 @@ const modal = document.getElementById("addWorkerModal");
 // Règles d’accès par salle 
 const zoneAcces = {
   "conference": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
-  "servers": ["Techniciens IT", "Manager", "Nettoyage"],
+  "servers":   ["Techniciens IT", "Manager", "Nettoyage"],
   "security": ["Agents de sécurité", "Manager", "Nettoyage"],
   "Réception": ["Réceptionnistes", "Manager", "Nettoyage"],
   "personnel": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
@@ -29,48 +28,36 @@ ouvrirModal.addEventListener("click", () => {
 fermerModal.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
+// Local Storage
+function enregistrerWorkers(data) {
+  localStorage.setItem("worker", JSON.stringify(data));
+}
+// Verifier Si la zone est pleine
+function ZoneEstpleine(zoneName) {
+  const workers = chargerWorkers();
+  const count = workers.filter(w => w.zone_work === "container_" + zoneName).length;
+  return count >= (zoneLimits[zoneName]);
+}
 
-// let room1 = document.getElementById("room1");
-// let room2 = document.getElementById("room2");
-// let room3 = document.getElementById("room3");
-// let room4 = document.getElementById("room4");
-// let room5 = document.getElementById("room5");
-// let room6 = document.getElementById("room6");
-
-// function enregistrerWorkers(data) {
-//   localStorage.setItem("worker", JSON.stringify(data));
-// }
-
-// function ZoneComple(zoneName) {
-//   const workers = chargerWorkers();
-//   const count = workers.filter(w => w.zone_work === "container_" + zoneName).length;
-//   return count >= (zoneLimits[zoneName] || Infinity);
-// }
-
-// function RoleEstAutoriseInZone(role, zone) {
-//   return zoneAcces[zone]?.includes(role);
-// }
+function RoleEstAutoriseInZone(role, zone) {
+  return zoneAcces[zone]?.includes(role);
+}
 // Afficher liste unassing 
-
 // function renderStafflist() {
 //   const container = document.getElementById("stafflist");
 //   container.innerHTML = "";
   
 //   const workers = chargerWorkers();
   
-//   workers
-//   .filter((w) => !w.is_worked)
-//   .forEach((w) => {
+//   workers.filter((w) => !w.is_worked).forEach((w) => {
 //     const div = document.createElement("div");
-//     div.className = "bg-white p-3 rounded-xl shadow flex gap-3 items-center";
-    
+//     div.className =
+//       "worker-card bg-white rounded-xl shadow p-3 flex flex-col items-center w-[110px] transition hover:scale-105";
 //     div.innerHTML = `
-//     <img src="${w.photo}" class="rounded-full w-12 h-12 object-cover">
-//     <div class="flex flex-col">
-//     <span class="font-bold">${w.fullName}</span>
-//     <span class="text-gray-500 text-sm">${w.role}</span>
-//     </div>
-//     <button class="removeFromRoom text-red-600 font-bold text-lg px-2">x</button>
+//         <img src="${w.photo}" class="w-14 h-14 rounded-full object-cover mb-1" />
+//         <p class="font-bold text-sm text-center leading-tight">${w.fullName}</p>
+//         <p class="text-[0.70rem] text-gray-500 text-center">${w.role}</p>
+//         <button class="remove text-red-500 font-bold text-sm mt-1">x</button>
 //     `;
     
 //     div.querySelector(".removeFromRoom").addEventListener("click", () => {
@@ -86,110 +73,80 @@ fermerModal.addEventListener("click", () => {
 // }
 
 // Rendre Les Zones 
-// function renderZones() {
-//   const workers = chargerWorkers();
-  
-//   // vider les conteneurs
-//   document.querySelectorAll(".zone-members").forEach((z) => (z.innerHTML = ""));
-  
-//   workers
-//   .filter((w) => w.is_worked)
-//   .forEach((w) => {
-//     const container = document.getElementById(w.zone_work);
-    
-//     if (!container) return;
-    
-//     let div = document.createElement("div");
-//     div.className =
-//     "card bg-white p-2 rounded shadow flex gap-2 items-center relative";
-    
-//     div.innerHTML = `
-//     <img src="${w.photo}" class="rounded-full w-12 h-12 object-cover">
-//     <div>
-//     <p class="font-bold">${w.fullName}</p>
-//     <p class="text-xs text-gray-500">${w.role}</p>
-//     </div>
-//     <button class="remove text-red-600 absolute right-2 top-2 font-bold">x</button>
-//     `;
-    
-//     // supprimer et renvoyer dans Unassigned
-//     div.querySelector(".remove").addEventListener("click", () => {
-//       w.is_worked = false;
-//       w.zone_work = "";
-//       enregistrerWorkers(workers);
-//       renderStafflist();
-//       renderZones();
-//     });
-//     container.appendChild(div);
-//   });
-// }
-//
+function renderZones() {
+  const workers = chargerWorkers();
 
-// function AfficherWorkersAdmie(zoneName, containerEl) {
-//   const workers = chargerWorkers();
-//   const allowed = zoneAcces[zoneName] || [];
-  
-//   containerEl.innerHTML = "";
-  
-//   workers
-//   .filter((w) => !w.is_worked && allowed.includes(w.role))
-//   .forEach((w) => {
-//     const card = document.createElement("div");
-//     card.className =
-//     "card cursor-pointer bg-white p-2 rounded shadow flex gap-3 items-center";
-    
-//     card.innerHTML = `
-//     <img src="${w.photo}" class="rounded-full w-12 h-12">
-//     <div>
-//     <p class="font-bold">${w.fullName}</p>
-//     <p class="text-sm text-gray-600">${w.role}</p>
-//     </div>
-//     `;
-    
-//     card.addEventListener("click", () =>
-//       assignWorkerToZone(w.id, zoneName, containerEl)
-//   );
-  
-//   containerEl.appendChild(card);
-// });
-// }
+  // vider les conteneurs
+  document.querySelectorAll(".zone-members").forEach((z) => (z.innerHTML = ""));
+
+  workers.filter((w) => w.is_worked).forEach((w) => {
+      const container = document.getElementById(w.zone_work);
+      if (!container) return;
+      
+      // retirer employé de la zone
+      card.querySelector(".remove").addEventListener("click", () => {
+        w.is_worked = false;
+        w.zone_work = "";
+        enregistrerWorkers(workers);
+        renderStafflist();
+        renderZones();
+      });
+
+      container.appendChild(card);
+    });
+}
+
+function AfficherWorkersAdmie(zoneName, containerEl) {
+  const workers = chargerWorkers();
+  const allowed = zoneAcces[zoneName] || [];
+
+  containerEl.innerHTML = "";
+
+  workers.filter((w) => !w.is_worked && allowed.includes(w.role)).forEach((w) => {
+      const card = document.createElement("div");
+      card.className ="cursor-pointer bg-white p-2 rounded-xl shadow flex gap-3 items-center w-full hover:bg-gray-100";
+      card.innerHTML = `
+                <img src="${w.photo}" class="w-10 h-10 object-cover">
+                <div>
+                    <p class="font-bold">${w.fullName}</p>
+                    <p class="text-sm text-gray-600">${w.role}</p>
+                </div>
+            `;
+      card.addEventListener("click", () => assignWorkerToZone(w.id, zoneName));
+      containerEl.appendChild(card);
+    });
+}
 // Affecter worker 
-// function assignWorkerToZone(id, zoneName, zoneContainer) {
-//   const workers = chargerWorkers();
-//   const worker = workers.find((w) => w.id === id);
-  
-//   if (!worker) return;
-  
-//   // Vérifier rôle
-//   if (!RoleEstAutoriseInZone(worker.role, zoneName)) {
-//     return alert(" Role non autorisé dans cette zone !");
-//   }
-  
-//   // Vérifier limite
-//   if (ZoneComple(zoneName)) {
-//     return alert(" Zone pleine !");
-//   }
-  
-//   // Affecter
-//   worker.is_worked = true;
-//   worker.zone_work = "container_" + zoneName;
-  
-//   enregistrerWorkers(workers);
-  
-//   renderStafflist();
-//   renderZones();
-// }
-// 
-// document.querySelectorAll(".zone-add").forEach(btn => {
-//   btn.addEventListener("click", () => {
-//     const room = btn.closest(".room");
-//     const zoneName = room.getAttribute("room-name");
-//     const container = room.querySelector(".zone-members");
-    
-//     AfficherWorkersAdmie(zoneName, container);
-//   });
-// });
+function assignWorkerToZone(id, zoneName) {
+  const workers = chargerWorkers();
+  const w = workers.find((w) => w.id === id);
 
+  if (!w) return;
+
+  // Vérifier rôle
+  if (!RoleEstAutoriseInZone(w.role, zoneName)) {
+    return alert("Ce rôle n'est pas autorisé dans cette zone.");
+  }
+  // Vérifier limite
+  if (ZoneEstpleine(zoneName)) {
+    return alert("Cette zone est pleine !");
+  }
+  // Affecter
+  w.is_worked = true;
+  w.zone_work = "container_" + zoneName;
+  enregistrerWorkers(workers);
+  renderStafflist();
+  renderZones();
+}
+
+document.querySelectorAll(".zone-add").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const room = btn.closest(".room");
+    const zoneName = room.getAttribute("room-name");
+    const container = room.querySelector(".zone-members");
+    AfficherWorkersAdmie(zoneName, container);
+  });
+});
 
 const formulaire = document.getElementById("workerForm");
 
@@ -271,17 +228,12 @@ formulaire.addEventListener("submit", (e) => {
   experienceList.innerHTML = "";
 });
 
-// ----------------------------
 //  REACTIVER LECTURE LOCAL STORAGE
-// ----------------------------
-
 function chargerWorkers() {
   return JSON.parse(localStorage.getItem("worker")) || [];
 }
 
-// ----------------------------
 //  AFFICHAGE STAFF NON ASSIGNÉS 
-// ----------------------------
 
 function renderStafflist() {
   const container = document.getElementById("stafflist");
@@ -289,12 +241,9 @@ function renderStafflist() {
 
   const workers = chargerWorkers();
 
-  workers
-    .filter(w => !w.is_worked)
-    .forEach(worker => {
-
+  workers.filter(w => !w.is_worked).forEach(worker => {
       const card = document.createElement("div");
-      card.className = "bg-white p-3 rounded-xl shadow flex gap-3 items-center";
+      card.className = "bg-white p-3 shadow flex gap-3 items-center";
 
       card.innerHTML = `
                 <div class="flex">
@@ -308,11 +257,9 @@ function renderStafflist() {
                 </div>
 
                 <div class="flex">
-                  <button class="mr-1 text-red-600 text-[.2rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
                   <button class="removeFromRoom text-red-600 font-bold mt-3 text-lg px-2">x</button>
                 </div>
       `;
-
       // Bouton remove
       card.querySelector(".removeFromRoom").addEventListener("click", () => {
         const workers = chargerWorkers();
@@ -329,10 +276,7 @@ function renderStafflist() {
     });
 }
 
-
-// ----------------------------
 //  CHARGER LES WORKERS APRÈS REFRESH
-// ----------------------------
 document.addEventListener("DOMContentLoaded", () => {
   renderStafflist();
 });
@@ -352,22 +296,13 @@ function ajouterWorker(worker) {
                   <h3 class="font-bold text-[.7rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">${worker.fullName} <br> <span class="md:text-[.8rem] text-gray-400">${worker.role}</</span></h3>
                 </div>
                 <div class="flex ">
-                <button class="mr-1 text-red-600 text-[.2rem] md:text-[1.2rem] mt-3 font-semibold">Edit</button>
                 <button class="removeFromRoom text-red-600 font-bold mt-3 text-lg px-2">x</button>
                 </div>
   `;
-  // Bouton X = remettre en unassigned
-  card.querySelector(".removeFromRoom").addEventListener("click", () => {
-    worker.is_worked = false;
-    worker.zone_work = "";
-    localStorage.setItem("worker", JSON.stringify(workers));
-    card.remove();
-  });
   staffList.appendChild(card);
 }
 
-// Sélection du bouton "Add Experience" 
-
+// Sélection du bouton "Add Experience"   
 const addExperience = document.querySelector("#addExperience");
 const experienceList = document.getElementById("experienceList");
 
@@ -399,23 +334,32 @@ addExperience.addEventListener("click", () => {
     experienceList.appendChild(expDiv);
 
 });
+// MOdal detaille
+function openDetails(worker) {
+  const modal = document.getElementById("detailsModal");
 
+  modal.querySelector(".detailPhoto").src = worker.photo;
+  modal.querySelector(".name").textContent = worker.fullName;
+  modal.querySelector(".role").textContent = worker.role;
+  modal.querySelector(".email").textContent = worker.email;
+  modal.querySelector(".phone").textContent = worker.phone;
 
+  modal.querySelector(".location").textContent = worker.is_worked
+    ? worker.zone_work.replace("container_", "")
+    : "Unassigned";
 
+  const expContainer = modal.querySelector(".Experience");
+  expContainer.innerHTML = "";
+  worker.experiences.forEach((exp) => {
+   const p = document.createElement("p");
+   p.textContent = `• ${exp.title} (${exp.debut} → ${exp.fin})`;
+   expContainer.appendChild(p);
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  modal.classList.remove("hidden");
+}
+// fermer modal
+document.getElementById("closeDetails").addEventListener("click", () => {
+    document.getElementById("detailsModal").classList.add("hidden");
+});
 
