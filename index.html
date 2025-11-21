@@ -31,7 +31,7 @@
                      
                 </div> 
                 <button id="openModal" class="bg-[#89AC46] text-white py-2 rounded-xl font-bold text-lg">
-                    Add New Worker
+                    Ajouter Employe
                 </button>
             </div>
         </section>
@@ -42,7 +42,6 @@
             <div class="wgrid w-full h-full" id="wgrid">
         
                 <div id="room1" class="room relative [grid-area:conference]" room-name="conference">
-                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="zone-add absolute left-1/2 top-[85%]  bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">Salle de conférence</h3>
                     <div id="container_conference" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
@@ -63,10 +62,10 @@
                     <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
                     <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-lg">Réception</h3>
-                     <div id="container_Reception" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
+                     <div id="container_Reception" class="zone-members grid grid-cols-2 grid-rows-2"></div>
                 </div>
                 <div id="room5" class="room relative [grid-area:personnel]" room-name="personnel">
-                    <div class="w-full h-full empty:bg-red-200 opacity-50"></div>
+                    <div class="w-full h-full"></div>
                     <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">Salle de personnel</h3>
                      <div id="container_personnel" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
@@ -81,101 +80,108 @@
 
             <!-- MODAL Et Formulaire D'ajouter  -->
            
-            <div id="addWorkerModal" class="modal hidden w-full h-screen fixed top-0 left-0 backdrop-blur-sm bg-black/40 flex justify-center items-center p-4">
-
-                <form id="workerForm" class="relative w-full max-w-[500px] bg-[#f4eb98] max-h-[90vh] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
-
-                    <!-- Fermer Formulaire -->
-                    <button id="closeModal" type="button" class="absolute top-2 right-4 text-3xl cursor-pointer text-gray-600 hover:text-black">x
-                    </button>
-
-                    <h2 class="text-green-600 font-bold text-3xl mb-2">Add Worker</h2>
-
-                    <!-- Nom Complet De Employe -->
-                    <div class="flex flex-col w-full gap-1">
-                        <label for="FullName" class="font-semibold">Full Name:</label>
-                        <input id="FullName" type="text" placeholder="Enter Votre Nom"
-                            class="p-2 bg-gray-200 rounded border border-gray-300" required>
-                    </div>
-
-                    <!-- Role -->
-                    <div class="flex flex-col w-full gap-1">
-                        <label for="Role" class="font-semibold">Role:</label>
-                        <select id="Role" class="w-full p-2 bg-gray-200 rounded border border-gray-300">
-                            <option value="Manager">Manager</option>
-                            <option value="Réceptionnistes">Réceptionnistes</option>
-                            <option value="Techniciens IT">Techniciens IT</option>
-                            <option value="Agents de sécurité">Agents sécurité</option>
-                            <option value="Nettoyage">Nettoyage</option>
-                            <option value="Autres rôles">Autres rôles</option>
-                        </select>
-                    </div>
-
-                    <!-- Profile Photo -->
-                    <div class="flex flex-col w-full gap-1">
-                        <label class="font-semibold">Profile Photo URL:</label>
-                        <input id="PhotoURL" type="text"
-                            placeholder="https://www.exemple.com/photo.png"
-                            class="p-2 bg-gray-200 rounded border border-gray-300">
-                        <img id="PreviewPhoto" src="img/Profil.jpg" alt="Preview image "
-                            class="w-16 h-16 rounded-full mt-1 border object-cover">
-                    </div>
-
-                    <!-- Email -->
-                    <div class="flex flex-col w-full gap-1">
-                        <label class="font-semibold">Email:</label>
-                        <input id="Email" type="email" placeholder="Enter Your email"
-                            class="p-2 bg-gray-200 rouneded border border-gray-300" required>
-                    </div>
-
-                    <!-- Phone -->
-                    <div class="flex flex-col w-full gap-1">
-                        <label class="font-semibold">Phone:</label>
-                        <input id="Phone" type="text" placeholder="Enter Your phone number"
-                            class="p-2 bg-gray-200 rounded border border-gray-300" required>
-                    </div>
-
-                    <!-- Experiences -->
-                    <div class="flex flex-col w-full gap-2">
-                        <label class="font-semibold">Experiences:</label>
-                        <div id="experienceList" class="w-full flex flex-col gap-3">
-                            <!--list des experiences de l'employée -->
-                        </div>
-                        <button type="button" id="addExperience"
-                            class="w-fit bg-[#86f43d] border border-gray-400 p-2 cursor-pointer rounded text-xl">
-                            Add Experience
-                        </button>
-                    </div>
-
-                    <!-- Submit -->
-
-                    <button type="submit"
-                            class="bg-green-600 p-2 w-full rounded-xl text-white font-bold cursor-pointer transition hover:scale-95">
-                        Add Worker
-                    </button>
-                </form>
-            </div>
-            <div id="detailsModal" class="hidden fixed top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
-                <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
-
-                <button id="closeDetails" class="absolute top-2 right-3 text-xl font-bold cursor-pointer">×</button>
-
-                <img class="detailPhoto w-24 h-24 rounded-full mx-auto mb-4 object-cover" src="">
-                
-                <h2 class="name text-xl font-bold text-center"></h2>
-                <p class="role text-center text-gray-600"></p>
-                <p class="email text-center text-sm"></p>
-                <p class="phone text-center text-sm mb-4"></p>
-
-                <h3 class="font-bold mt-2">Localisation actuelle :</h3>
-                <p class="location text-gray-700 mb-3"></p>
-
-                <h3 class="font-bold">Expériences :</h3>
-                <div class="Experience flex flex-col gap-2"></div>
-            </div>
-        </div>
-
+            
         </section>
+        <div id="addWorkerModal" class="modal hidden w-full h-screen fixed top-0 left-0 backdrop-blur-sm bg-black/40 flex justify-center items-center p-4">
+
+            <form id="employeeForm" class="relative w-full max-w-[500px] bg-[#f4eb98] max-h-[90vh] rounded-xl shadow-md p-4 flex flex-col items-center gap-3 overflow-y-auto">
+
+                <!-- Fermer Formulaire -->
+                <button id="closeModal" type="button" class="absolute top-2 right-4 text-3xl cursor-pointer text-gray-600 hover:text-black">x
+                </button>
+
+                <h2 class="text-green-600 font-bold text-3xl mb-2">Ajouter Employe</h2>
+
+                <!-- Nom Complet De Employe -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="nomComplet" class="font-semibold">Nom Complet:</label>
+                    <input id="nomComplet" type="text" placeholder="Enter Votre Nom"
+                        class="p-2 bg-gray-200 rounded border border-gray-300" required>
+                </div>
+
+                <!-- Role -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="Role" class="font-semibold">Role:</label>
+                    <select id="Role" class="w-full p-2 bg-gray-200 rounded border border-gray-300">
+                        <option value="Manager">Manager</option>
+                        <option value="Réceptionnistes">Réceptionnistes</option>
+                        <option value="Techniciens IT">Techniciens IT</option>
+                        <option value="Agents de sécurité">Agents sécurité</option>
+                        <option value="Nettoyage">Nettoyage</option>
+                        <option value="Autres rôles">Autres rôles</option>
+                    </select>
+                </div>
+
+                <!-- Profile Photo -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="imageUrl" class="font-semibold">Profile Image URL:</label>
+                    <input id="imageUrl" type="text"
+                        placeholder="https://www.exemple.com/photo.png"
+                        class="p-2 bg-gray-200 rounded border border-gray-300">
+                    <img id="imageConteneur" src="img/Profil.jpg" alt="Conteneur d'image"
+                        class="w-16 h-16 rounded-full mt-1 border object-cover">
+                </div>
+
+                <!-- Email -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="email" class="font-semibold">Email:</label>
+                    <input id="email" type="email" placeholder="Enter Your email"
+                        class="p-2 bg-gray-200 rouneded border border-gray-300" required>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex flex-col w-full gap-1">
+                    <label for="telephone" class="font-semibold">Telephone:</label>
+                    <input id="telephone" type="text" placeholder="Enter Your phone number"
+                        class="p-2 bg-gray-200 rounded border border-gray-300" required>
+                </div>
+
+                <!-- Experiences -->
+                <div class="flex flex-col w-full gap-2">
+                    <label class="font-semibold">Experiences:</label>
+                    <div id="experienceList" class="w-full flex flex-col gap-3">
+                        <!--list des experiences de l'employée -->
+                    </div>
+                    <button type="button" id="addExperience"
+                        class="w-fit bg-[#86f43d] border border-gray-400 p-2 cursor-pointer rounded text-xl">
+                        Ajouter Experience
+                    </button>
+                </div>
+
+                <!-- Submit -->
+
+                <button type="submit"
+                        class="bg-green-600 p-2 w-full rounded-xl text-white font-bold cursor-pointer transition hover:scale-95">
+                    Ajouter Employee
+                </button>
+            </form>
+        </div>
+        <div id="detailsModal" class="fixed top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm flex justify-center items-center p- hidden">
+            <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
+
+            <button id="closeDetails" class="absolute top-2 right-3 text-xl font-bold cursor-pointer">×</button>
+
+            <img class="detailPhoto w-24 h-24 rounded-full mx-auto mb-4 object-cover" src="">
+            
+            <h2 class="nom text-xl font-bold text-center">Youness</h2>
+            <p class="role text-center text-gray-600"><strong>Role : </strong><span></span> </p>
+            <p class="email text-center text-sm"><strong>Email : </strong><span></span></p>
+            <p class="telephone text-center text-sm mb-4"><strong>Telephone : </strong></p>
+
+            <p class="font-bold mt-2"><strong>Localisation actuelle :</strong>Server room</p>
+            <p class="location text-gray-700 mb-3"></p>
+
+            <h3 class="font-bold">Expériences :</h3>
+            <div class="Experience flex flex-col gap-2"></div>
+        </div>
+    </div>
+    <!-- <div id="add-modal" class="modal w-full h-screen fixed top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4 ">
+     <div class="relative w-[30rem] bg-white h-100 rounded-xl shadow-md px-2 py-4 flex flex-col items-center gap-2 overflow-y-auto ">
+        <button class="close-Modal-btn absolute top-2 right-4 text-3xl cursor-pointer">&times;</button>
+        <h3 class="text-2xl text-green-500">Sélectionner Un Employer</h3>
+        <div class="assign flex flex-col gap-2"></div>
+     </div>
+   </div> -->
     </main>
       
     <script src="js/main.js"></script>
