@@ -27,7 +27,7 @@
         <section>
             <div class=" w-[300px] h-screen rounded-xl bg-[#D3E671] p-6 flex flex-col gap-6">
                 <h2 class="text-2xl font-bold text-center"><i class="fas fa-users"></i>Unassigned Staff</h2>
-                <div id="stafflist" class=" flex flex-col rounded-2xl p-4 items-center gap-4">
+                <div id="stafflist" class=" flex flex-col rounded-2xl p-4 items-center gap-4 overflow-auto">
                      
                 </div> 
                 <button id="openModal" class="bg-[#89AC46] text-white py-2 rounded-xl font-bold text-lg">
@@ -42,6 +42,7 @@
             <div class="wgrid w-full h-full" id="wgrid">
         
                 <div id="room1" class="room relative [grid-area:conference]" room-name="conference">
+                    <div class="w-full h-full empty:bg-green-300 opacity-50"></div>
                     <button class="zone-add absolute left-1/2 top-[85%]  bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-2 left-1/2 -translate-x-1/2  text-black  font-bold text-lg">Salle de conférence</h3>
                     <div id="container_conference" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
@@ -65,7 +66,7 @@
                      <div id="container_Reception" class="zone-members grid grid-cols-2 grid-rows-2"></div>
                 </div>
                 <div id="room5" class="room relative [grid-area:personnel]" room-name="personnel">
-                    <div class="w-full h-full"></div>
+                    <div class="w-full h-full empty:bg-green-300 opacity-50"></div>
                     <button class="zone-add absolute left-1/2 top-[85%] -translate-1/2 bg-blue-600 w-8 h-8 flex justify-center items-center transition-all duration-500  text-white text-lg cursor-pointer hover:scale-105">+</button>
                     <h3 class="absolute top-1 left-1/2 -translate-x-1/2 text-black font-bold text-xs md:text-lg md:top-2">Salle de personnel</h3>
                      <div id="container_personnel" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
@@ -77,10 +78,6 @@
                     <div id="container_archive" class="zone-members absolute top-12 left-3 right-3 bottom-4 flex flex-wrap gap-2 overflow-auto p-2"></div>
                 </div>
             </div>
-
-            <!-- MODAL Et Formulaire D'ajouter  -->
-           
-            
         </section>
         <div id="addWorkerModal" class="modal hidden w-full h-screen fixed top-0 left-0 backdrop-blur-sm bg-black/40 flex justify-center items-center p-4">
 
@@ -156,10 +153,10 @@
                 </button>
             </form>
         </div>
-        <div id="detailsModal" class="fixed top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm flex justify-center items-center p- hidden">
+        <div id="detailsModal" class="modal fixed top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm flex justify-center items-center p- hidden">
             <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
 
-            <button id="closeDetails" class="absolute top-2 right-3 text-xl font-bold cursor-pointer">×</button>
+            <button id="closeDetails" class="close-Modal-btn absolute top-2 right-3 text-xl font-bold cursor-pointer">×</button>
 
             <img class="detailPhoto w-24 h-24 rounded-full mx-auto mb-4 object-cover" src="">
             
@@ -175,13 +172,14 @@
             <div class="Experience flex flex-col gap-2"></div>
         </div>
     </div>
-    <!-- <div id="add-modal" class="modal w-full h-screen fixed top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4 ">
-     <div class="relative w-[30rem] bg-white h-100 rounded-xl shadow-md px-2 py-4 flex flex-col items-center gap-2 overflow-y-auto ">
-        <button class="close-Modal-btn absolute top-2 right-4 text-3xl cursor-pointer">&times;</button>
-        <h3 class="text-2xl text-green-500">Sélectionner Un Employer</h3>
-        <div class="assign flex flex-col gap-2"></div>
-     </div>
-   </div> -->
+    <div id="add-modal" class="hidden modal w-full h-screen fixed top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4 ">
+        <div class="relative w-[30rem] bg-white h-100 rounded-xl shadow-md px-2 py-4 flex flex-col items-center gap-2 overflow-y-auto ">
+            <button class="close-Modal-btn absolute top-2 right-4 text-3xl cursor-pointer">&times;</button>
+            <h3 class="text-2xl text-green-500">Sélectionner Un Employer</h3>
+            <div class="assign flex flex-col gap-2" id=""></div>
+        </div>
+
+    </div>
     </main>
       
     <script src="js/main.js"></script>
