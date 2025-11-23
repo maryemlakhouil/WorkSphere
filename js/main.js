@@ -26,7 +26,7 @@ const selectModal = document.getElementById("add-modal");
 const openSelectModal = () => selectModal.classList.remove("hidden");
 const closeSelectModal = () => selectModal.classList.add("hidden");
 
-// RÈGLES D'ACCÈS DE Chaque Salle
+// RÈGLES D'ACCÈS DE Chaque Salle 
 
 const zoneAcces = {
   "conference": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
