@@ -62,6 +62,7 @@ fermerModal.addEventListener("click", () => modal.classList.add("hidden"));
 const staffList = document.getElementById("stafflist");
 
 function afficherEmployees(employees) {
+  console.log(employees)
   // Affiche seulement les employés NON assignés
   const unassigned = employees.filter((emp) => !emp.localisation);
 
@@ -249,6 +250,8 @@ addExperience.addEventListener("click", () => {
 // ==================================
 
 function asigneEmployer(room, zonemember, zoneName) {
+  
+    console.log(room, zonemember, zoneName);
   // Filtrer employés autorisés a entrer dans la salle
   const newList = employees.filter((employee) =>
     zoneAcces[zoneName].includes(employee.role)
@@ -286,18 +289,19 @@ function asigneEmployer(room, zonemember, zoneName) {
     selectModal.querySelector(".assign").appendChild(card);
 
     // Clic pour assigner
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (e) => {
       if (zonemember.childElementCount >= zoneLimits[zoneName]) {
         alert("Zone pleine");
         return;
       }
 
       const card2 = card.cloneNode(true);
+      
 
       closeSelectModal();
 
       card2.innerHTML = `
-        <div class="flex bg-gray-200 items-center rounded-lg">
+        <div data-supadd="${employee.id}" class=" flex bg-gray-200 items-center rounded-lg">
           <img src="${employee.image}" alt="staff" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
           <h3 class="font-semibold text-[.7rem] md:text-[.8rem] ml-4">
             ${nom}
@@ -307,6 +311,16 @@ function asigneEmployer(room, zonemember, zoneName) {
           <button class="remover ml-auto mr-2 text-red-600 font-bold">x</button>
         </div>
       `;
+      console.log(card2)
+      console.log(zonemember);
+     
+      let allroom = Array.from(document.querySelector("#wgrid").children);
+      allroom.forEach(ele => {
+        let cart = ele.querySelector(`[data-supadd="${employee.id}"]`);
+        if(cart){
+          cart.parentElement.remove()
+        }
+      })
 
       zonemember.appendChild(card2);
 
@@ -328,7 +342,8 @@ function asigneEmployer(room, zonemember, zoneName) {
       // Retirer depuis stafflist
       // document.querySelector(`#stafflist [data-id="${employee.id}"]`)?.remove();
       const element = e.target.closest('.chooseEmp');
-        document.querySelector(`#stafflist [data-id="${element.getAttribute("data-id")}"]`).remove();
+      document.querySelector(`#stafflist [data-id="${element.getAttribute("data-id")}"]`)?.remove();
+
     });
   });
   
@@ -361,7 +376,7 @@ function retelecharger() {
 
       const card2 = document.createElement("div");
       card2.innerHTML = `
-        <div class="flex bg-gray-200 items-center rounded-sm">
+        <div data-supadd="${emp.id}"  class="flex bg-gray-200 items-center rounded-sm">
           <img src="${emp.image}" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
           <h3 class="font-semibold text-gray-700 text-[.7rem] md:text-[.8rem] ml-4">
             ${emp.nomComplet}
