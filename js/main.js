@@ -97,10 +97,10 @@ function afficherEmployees(employees) {
     card.innerHTML = `
       <div class="flex">
         <img src="${employee.image}" alt="staff image" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
-        <h3 class="font-semibold text-[.4rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">
+        <h3 class="font-semibold text-[.3rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">
           ${nom} 
           <br>
-          <span class="md:text-[.8rem] text-gray-500">${employee.role}</span>
+          <span class="md:text-[.2rem] text-gray-500">${employee.role}</span>
         </h3>
       </div>
     `;
