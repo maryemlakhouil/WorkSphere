@@ -1,6 +1,3 @@
-//-----------------------
-//  GLOBAL DECLARATION
-//-----------------------
 // Récupération des employés depuis LocalStorage
 const employees = JSON.parse(localStorage.getItem("employee")) || [];
 
