@@ -29,11 +29,11 @@ const closeSelectModal = () => selectModal.classList.add("hidden");
 // RÈGLES D'ACCÈS DE Chaque Salle 
 
 const zoneAcces = {
-  "conference": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
+  "conference": ["Manager", "Receptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
   "servers":   ["Techniciens IT", "Manager", "Nettoyage"],
   "security": ["Agents de sécurité", "Manager", "Nettoyage"],
-  "Réception": ["Réceptionnistes", "Manager", "Nettoyage"],
-  "personnel": ["Manager", "Réceptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
+  "reception": ["Receptionnistes", "Manager", "Nettoyage"],
+  "personnel": ["Manager", "Receptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
   "archive": ["Manager"]
 };
 
@@ -42,7 +42,7 @@ const zoneLimits = {
   conference: 10,
   servers: 2,
   security: 2,
-  Réception: 3,
+  reception: 3,
   personnel: 6,
   archive: 1,
 };
