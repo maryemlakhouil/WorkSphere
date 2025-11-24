@@ -27,15 +27,29 @@ const selectModal = document.getElementById("add-modal");
 const openSelectModal = () => selectModal.classList.remove("hidden");
 const closeSelectModal = () => selectModal.classList.add("hidden");
 
-// RÈGLES D'ACCÈS DE Chaque Salle 
+// RÈGLES D'ACCÈS DE Chaque Salle
 
 const zoneAcces = {
-  "conference": ["Manager", "Receptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
-  "servers":   ["Techniciens IT", "Manager", "Nettoyage"],
-  "security": ["Agents de sécurité", "Manager", "Nettoyage"],
-  "reception": ["Receptionnistes", "Manager", "Nettoyage"],
-  "personnel": ["Manager", "Receptionnistes", "Techniciens IT", "Agents de sécurité", "Nettoyage", "Autres rôles"],
-  "archive": ["Manager"]
+  conference: [
+    "Manager",
+    "Receptionnistes",
+    "Techniciens IT",
+    "Agents de sécurité",
+    "Nettoyage",
+    "Autres rôles",
+  ],
+  servers: ["Techniciens IT", "Manager", "Nettoyage"],
+  security: ["Agents de sécurité", "Manager", "Nettoyage"],
+  reception: ["Receptionnistes", "Manager", "Nettoyage"],
+  personnel: [
+    "Manager",
+    "Receptionnistes",
+    "Techniciens IT",
+    "Agents de sécurité",
+    "Nettoyage",
+    "Autres rôles",
+  ],
+  archive: ["Manager"],
 };
 
 // Limites de capacité par salle
@@ -63,7 +77,7 @@ fermerModal.addEventListener("click", () => modal.classList.add("hidden"));
 const staffList = document.getElementById("stafflist");
 
 function afficherEmployees(employees) {
-  console.log(employees)
+  console.log(employees);
   // Affiche seulement les employés NON assignés
   const unassigned = employees.filter((emp) => !emp.localisation);
 
@@ -101,18 +115,19 @@ function afficherEmployees(employees) {
   });
 }
 
-
-allroom.forEach(ele => {
+allroom.forEach((ele) => {
   ele.addEventListener("click", (e) => {
-    if (e.target.closest(".details") && !e.target.classList.contains("remover")) {
+    if (
+      e.target.closest(".details") &&
+      !e.target.classList.contains("remover")
+    ) {
       let idcart = e.target.closest(".details").dataset.supadd;
       let empldetails = employees.find((ele) => ele.id == idcart);
       afficherDate(empldetails);
       detailsmodal.classList.remove("hidden");
-
     }
   });
-} )
+});
 
 // ===============================
 //     Modal Details D'employée
@@ -152,12 +167,9 @@ function afficherDate(employee) {
       </div>
     `;
   });
-
-
 }
 
-
-  afficherEmployees(employees);
+afficherEmployees(employees);
 
 // ==================================
 // Formulaire d'ajouter Un employée
@@ -268,14 +280,13 @@ addExperience.addEventListener("click", () => {
 // ==================================
 
 function asigneEmployer(room, zonemember, zoneName) {
-  
-    console.log(room, zonemember, zoneName);
+  console.log(room, zonemember, zoneName);
   // Filtrer employés autorisés a entrer dans la salle
   const newList = employees.filter((employee) =>
     zoneAcces[zoneName].includes(employee.role)
   );
 
-  // Vérifier capacité de la salle 
+  // Vérifier capacité de la salle
   if (zonemember.childElementCount >= zoneLimits[zoneName]) {
     alert("Zone pleine");
     return;
@@ -332,18 +343,13 @@ function asigneEmployer(room, zonemember, zoneName) {
       console.log(card2);
       console.log(zonemember);
 
-      
-
-      
       allroom.forEach((ele) => {
         let cart = ele.querySelector(`[data-supadd="${employee.id}"]`);
         if (cart) {
           cart.parentElement.remove();
         }
-        
       });
 
-      
       zonemember.appendChild(card2);
 
       // Marquer localisation pour stockage
@@ -371,20 +377,23 @@ function asigneEmployer(room, zonemember, zoneName) {
         ?.remove();
     });
   });
-  
-  const container = room.querySelector(".zone-members");
 
+  const container = room.querySelector(".zone-members");
 }
 
 // Ouverture selectModal depuis bouton "+"
 document.querySelectorAll(".zone-add").forEach((btn) => {
   btn.addEventListener("click", () => {
-    
-    openSelectModal();
     const room = btn.closest(".room");
     const zonemember = room.querySelector(".zone-members");
     const zoneName = room.getAttribute("room-name");
-    asigneEmployer(room, zonemember, zoneName);
+    if (zonemember.childElementCount >= zoneLimits[zoneName]) {
+      alert("Zone pleine");
+      return;
+    } else {
+      openSelectModal();
+      asigneEmployer(room, zonemember, zoneName);
+    }
   });
 });
 
