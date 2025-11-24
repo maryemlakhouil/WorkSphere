@@ -379,6 +379,7 @@ function asigneEmployer(room, zonemember, zoneName) {
 // Ouverture selectModal depuis bouton "+"
 document.querySelectorAll(".zone-add").forEach((btn) => {
   btn.addEventListener("click", () => {
+    
     openSelectModal();
     const room = btn.closest(".room");
     const zonemember = room.querySelector(".zone-members");
