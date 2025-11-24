@@ -17,6 +17,7 @@ closeModalBtn.forEach((E) => {
 //     OUVRIR / FERMER MODAL AJOUT
 //-------------------------------------
 
+let allroom = Array.from(document.querySelector("#wgrid").children);
 const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
@@ -100,6 +101,19 @@ function afficherEmployees(employees) {
   });
 }
 
+
+allroom.forEach(ele => {
+  ele.addEventListener("click", (e) => {
+    if (e.target.closest(".details") && !e.target.classList.contains("remover")) {
+      let idcart = e.target.closest(".details").dataset.supadd;
+      let empldetails = employees.find((ele) => ele.id == idcart);
+      afficherDate(empldetails);
+      detailsmodal.classList.remove("hidden");
+
+    }
+  });
+} )
+
 // ===============================
 //     Modal Details D'employée
 // ===============================
@@ -107,6 +121,7 @@ function afficherEmployees(employees) {
 const detailsmodal = document.getElementById("detailsModal");
 
 function afficherDate(employee) {
+  console.log(employee);
   const image = detailsmodal.querySelector("img");
   const name = detailsmodal.querySelector(".nom");
   const email = detailsmodal.querySelector(".email");
@@ -137,9 +152,12 @@ function afficherDate(employee) {
       </div>
     `;
   });
+
+
 }
 
-afficherEmployees(employees);
+
+  afficherEmployees(employees);
 
 // ==================================
 // Formulaire d'ajouter Un employée
@@ -296,13 +314,13 @@ function asigneEmployer(room, zonemember, zoneName) {
       }
 
       const card2 = card.cloneNode(true);
-      
 
       closeSelectModal();
 
       card2.innerHTML = `
-        <div data-supadd="${employee.id}" class=" flex bg-gray-200 items-center rounded-lg">
+        <div data-supadd="${employee.id}" class="details flex bg-gray-200 items-center rounded-lg">
           <img src="${employee.image}" alt="staff" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
+
           <h3 class="font-semibold text-[.7rem] md:text-[.8rem] ml-4">
             ${nom}
             <br>
@@ -311,17 +329,21 @@ function asigneEmployer(room, zonemember, zoneName) {
           <button class="remover ml-auto mr-2 text-red-600 font-bold">x</button>
         </div>
       `;
-      console.log(card2)
+      console.log(card2);
       console.log(zonemember);
-     
-      let allroom = Array.from(document.querySelector("#wgrid").children);
-      allroom.forEach(ele => {
-        let cart = ele.querySelector(`[data-supadd="${employee.id}"]`);
-        if(cart){
-          cart.parentElement.remove()
-        }
-      })
 
+      
+
+      
+      allroom.forEach((ele) => {
+        let cart = ele.querySelector(`[data-supadd="${employee.id}"]`);
+        if (cart) {
+          cart.parentElement.remove();
+        }
+        
+      });
+
+      
       zonemember.appendChild(card2);
 
       // Marquer localisation pour stockage
@@ -341,9 +363,12 @@ function asigneEmployer(room, zonemember, zoneName) {
 
       // Retirer depuis stafflist
       // document.querySelector(`#stafflist [data-id="${employee.id}"]`)?.remove();
-      const element = e.target.closest('.chooseEmp');
-      document.querySelector(`#stafflist [data-id="${element.getAttribute("data-id")}"]`)?.remove();
-
+      const element = e.target.closest(".chooseEmp");
+      document
+        .querySelector(
+          `#stafflist [data-id="${element.getAttribute("data-id")}"]`
+        )
+        ?.remove();
     });
   });
   
@@ -376,7 +401,7 @@ function retelecharger() {
 
       const card2 = document.createElement("div");
       card2.innerHTML = `
-        <div data-supadd="${emp.id}"  class="flex bg-gray-200 items-center rounded-sm">
+        <div data-supadd="${emp.id}"  class="details cursor-pointer flex bg-gray-200 items-center rounded-sm">
           <img src="${emp.image}" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
           <h3 class="font-semibold text-gray-700 text-[.7rem] md:text-[.8rem] ml-4">
             ${emp.nomComplet}
