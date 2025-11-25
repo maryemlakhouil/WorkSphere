@@ -10,11 +10,11 @@ closeModalBtn.forEach((E) => {
     parent.classList.add("hidden");
   });
 });
-//-------------------------------------
-//     OUVRIR / FERMER MODAL AJOUT
-//-------------------------------------
 
+// Tableau De Toutes les Romms 
 let allroom = Array.from(document.querySelector("#wgrid").children);
+
+// Modal D'ajout Un Employée
 const ouvrirModal = document.getElementById("openModal");
 const fermerModal = document.getElementById("closeModal");
 const modal = document.getElementById("addWorkerModal");
@@ -25,27 +25,12 @@ const openSelectModal = () => selectModal.classList.remove("hidden");
 const closeSelectModal = () => selectModal.classList.add("hidden");
 
 // RÈGLES D'ACCÈS DE Chaque Salle
-
 const zoneAcces = {
-  conference: [
-    "Manager",
-    "Receptionnistes",
-    "Techniciens IT",
-    "Agents de sécurité",
-    "Nettoyage",
-    "Autres rôles",
-  ],
+  conference: ["Manager","Receptionnistes","Techniciens IT","Agents de sécurité","Nettoyage","Autres rôles",],
   servers: ["Techniciens IT", "Manager", "Nettoyage"],
   security: ["Agents de sécurité", "Manager", "Nettoyage"],
   reception: ["Receptionnistes", "Manager", "Nettoyage"],
-  personnel: [
-    "Manager",
-    "Receptionnistes",
-    "Techniciens IT",
-    "Agents de sécurité",
-    "Nettoyage",
-    "Autres rôles",
-  ],
+  personnel: ["Manager","Receptionnistes","Techniciens IT","Agents de sécurité","Nettoyage","Autres rôles",],
   archive: ["Manager"],
 };
 
@@ -58,6 +43,7 @@ const zoneLimits = {
   personnel: 6,
   archive: 1,
 };
+
 //-------------------------
 //  OUVERTURE / FERMETURE
 //-------------------------
@@ -67,14 +53,14 @@ ouvrirModal.addEventListener("click", () => modal.classList.remove("hidden"));
 
 // 2-Fermer modal d'ajout
 fermerModal.addEventListener("click", () => modal.classList.add("hidden"));
-//---------------------------
-// AFFICHAGE LISTE EMPLOYÉS
-//--------------------------
+
+//---------------------------------------
+// Afficher les Employées Non Assignées
+//---------------------------------------
 
 const staffList = document.getElementById("stafflist");
 
 function afficherEmployees(employees) {
-  console.log(employees);
   // Affiche seulement les employés NON assignés
   const unassigned = employees.filter((emp) => !emp.localisation);
 
@@ -82,42 +68,34 @@ function afficherEmployees(employees) {
 
   unassigned.forEach((employee) => {
     const card = document.createElement("div");
+    const nomComplet = employee.nomComplet;
+    // const nom = nomComplet[nomComplet.length - 1];
 
-    // Affichage juste du nom (Dernier mot)
-    const nomComplet = employee.nomComplet.split(" ");
-    const nom = nomComplet[nomComplet.length - 1];
-
-    card.className =
-      "bg-white p-3 rounded-xl shadow flex gap-3 items-center cursor-pointer";
+    card.className ="bg-white p-3 rounded-xl shadow flex gap-4 items-center cursor-pointer";
     card.setAttribute("data-id", employee.id);
 
     card.innerHTML = `
-      <div class="flex">
+      <div class="flex flex-row gap-4">
         <img src="${employee.image}" alt="staff image" class="rounded-full w-9 h-8 m-2 md:m-3 md:w-14 md:h-14 object-cover">
-        <h3 class="font-semibold text-[.3rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">
-          ${nom} 
-          <br>
-          <span class="md:text-[.2rem] text-gray-500">${employee.role}</span>
-        </h3>
+        <h3 class="font-semibold text-[.2rem] md:text-[0.8rem] mt-2 md:mt-3 md:ml-4">
+          ${nomComplet}</h3>
+          <span class="md:text-[.2rem] text-gray-100">${employee.role}</span>
       </div>
     `;
-
     // Ouvrir les détails au clic
     card.addEventListener("click", () => {
       detailsmodal.classList.remove("hidden");
       afficherDate(employee);
     });
-
     staffList.appendChild(card);
   });
 }
-
+//----------------------------
+    // Ouvrir Modal Detail
+//----------------------------
 allroom.forEach((ele) => {
   ele.addEventListener("click", (e) => {
-    if (
-      e.target.closest(".details") &&
-      !e.target.classList.contains("remover")
-    ) {
+    if (e.target.closest(".details") &&!e.target.classList.contains("remover")) {
       let idcart = e.target.closest(".details").dataset.supadd;
       let empldetails = employees.find((ele) => ele.id == idcart);
       afficherDate(empldetails);
@@ -150,7 +128,6 @@ function afficherDate(employee) {
   role.textContent = employee.role;
   phone.textContent = employee.telephone;
   place.textContent = employee.localisation || "Non assigné";
-
   image.src = employee.image || "../img/Profil.jpg";
 
   // Boucle expériences
@@ -165,7 +142,6 @@ function afficherDate(employee) {
     `;
   });
 }
-
 afficherEmployees(employees);
 
 // ==================================
@@ -183,8 +159,7 @@ const imageConteneur = document.getElementById("imageConteneur");
 
 // Prévisualisation image
 imageInput.addEventListener("input", () => {
-  imageConteneur.src =
-    imageInput.value.trim() !== "" ? imageInput.value : "img/Profil.jpg";
+  imageConteneur.src =imageInput.value.trim() !== "" ? imageInput.value : "img/Profil.jpg";
 });
 
 // Regex validations
@@ -201,7 +176,6 @@ formulaire.addEventListener("submit", (e) => {
   if (!emailRegex.test(inputEmail.value)) return alert("Email invalide");
   if (!telephoneRegex.test(inputTelephone.value))
     return alert("Téléphone invalide");
-
   // Collecte des expériences
   const blockExp = document.querySelectorAll(".expBlock");
   let experience = [];
@@ -216,7 +190,6 @@ formulaire.addEventListener("submit", (e) => {
 
     if (new Date(debut) >= new Date(fin))
       return alert("La date de début doit être avant la fin");
-
     experience.push({ titre, debut, fin });
   }
 
@@ -268,21 +241,19 @@ addExperience.addEventListener("click", () => {
   expDiv.querySelector(".removeExp").addEventListener("click", () => {
     expDiv.remove();
   });
-
   experienceList.appendChild(expDiv);
 });
-
 // =================================
 // Assignation d'employé a une salle
 // ==================================
 
 function asigneEmployer(room, zonemember, zoneName) {
-  console.log(room, zonemember, zoneName);
+  
   // Filtrer employés autorisés a entrer dans la salle
   const newList = employees.filter((employee) =>
     zoneAcces[zoneName].includes(employee.role)
   );
-
+  
   // Vérifier capacité de la salle
   if (zonemember.childElementCount >= zoneLimits[zoneName]) {
     alert("Zone pleine");
@@ -297,8 +268,7 @@ function asigneEmployer(room, zonemember, zoneName) {
     const nomComplet = employee.nomComplet.split(" ");
     const nom = nomComplet[nomComplet.length - 1];
 
-    card.className =
-      "chooseEmp  p-2 rounded-xl shadow flex gap-3 items-center cursor-pointer";
+    card.className ="chooseEmp  p-2 rounded-xl shadow flex gap-3 items-center cursor-pointer";
     card.setAttribute("data-id", employee.id);
 
     card.innerHTML = `
@@ -320,7 +290,7 @@ function asigneEmployer(room, zonemember, zoneName) {
         alert("Zone pleine");
         return;
       }
-
+      // utiliser dans la salle
       const card2 = card.cloneNode(true);
 
       closeSelectModal();
@@ -337,9 +307,7 @@ function asigneEmployer(room, zonemember, zoneName) {
           <button class="remover ml-auto mr-2 text-red-600 font-bold">x</button>
         </div>
       `;
-      console.log(card2);
-      console.log(zonemember);
-
+      //Retirer l'employé de toutes les autres salles
       allroom.forEach((ele) => {
         let cart = ele.querySelector(`[data-supadd="${employee.id}"]`);
         if (cart) {
