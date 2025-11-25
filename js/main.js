@@ -367,6 +367,7 @@ document.querySelectorAll(".zone-add").forEach((btn) => {
 // ===============================
 
 function retelecharger() {
+  
   employees.forEach((emp) => {
     if (emp.localisation) {
       const room = document.querySelector(`[room-name="${emp.localisation}"]`);
